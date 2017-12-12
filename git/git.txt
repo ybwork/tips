@@ -1,0 +1,28 @@
+﻿- git remote - показывает все подключённые удалённые репозитории
+
+- git remote -v - показывает все подключённые удалённые репозитории в формате (имя, урл)
+
+- git clone https://github.com/yetbetter - взяли данные с репозитория
+
+- git fetch name_repo - забирает, но не сливает данные
+
+- git pull name_repo - забирает и мержит
+
+- git branch name_branch - создать ветку
+
+- git checkout name_branch - переключиться на ветку
+
+- git branch - посмотреть на какой ветке и какие ветки есть
+
+- git branch -d name_branch - удалить ветку
+
+- git branch -D name_branch - жестко удалить ветку
+
+- git checkout master, git merge name_branch - переключились и слили
+
+- Если после слияния конфликт, то посмотреть в каких файлах можно с помощью - git status и там unmerged: ...; Всё что выше ======= это версия из моей ветки master
+
+- После того как проблемы решены каждый файл нужно прогнать через git add
+
+- q - выход из git log
+
