@@ -27,7 +27,7 @@
 /*
 	Общее.
 
-	Два самых важных понятия в интерфейсе Android — это Activity, View, ViewGroup, Layout.
+	Самые важные понятия в интерфейсе Android — это Activity, View, ViewGroup, Layout.
 
 		Activity — это та часть приложения, с которой взаимодействует пользователь.
 
@@ -45,13 +45,57 @@
 
 			рамка вокрук поля ввода и двух кнопок - другое ViewGroup
 
-	
-
 	Все группы представлений включают в себя параметры ширины и высоты (layout_width и layout_height), и каждое представление должно определять их.
 */
 
 /*
+	Настройка рабочего окружения.
+
+	Открыть app > res > layout > activity_main.xml
+
+	Выбрать View > Tool Windows > Project
+
+	Выбрать Design в нижней части панели.
+
+	Выбрать bluprint в панели чуть ниже вкладок с открытыми файлами.
+
+	Включить Turn On Autoconnect (подкова возле глаза).
+
+	Выставить Default Margins в 16 (справа от подковы).
+
+	Выбрать модель телефона для разработки (выше Default Margins) 
+
+	Component Three -> ConstraitLayout (нажать правой кнопкой мыши) -> Constrait Layout -> Infer Contraints или выбрать Turn on AutoConnect
+*/
+
+/*
+	Позиционирование.
+
+	widgets (View objects) - компоненты пользовательского интерфейса (кнопки, чекбоксы).
+
+	layouts (ViewGroup objects) - невидимые контейнеры, они определяют, как их дочерние представления располагаются на экране.
+
+	Component Tree - окно в программе, которое показывает иерархию представлений макета.
+
+	ConstraintLayout - общий контейнер, который находится внутри окна Component Tree. В нём могут лежать другие контейнер/контейнеры (определение придуманное мной на основе описанного в документации). Например выставим ConstraintLayout 16dp. Внутри этого контейнера лежит 2 других контейнера (контейнер а и контейнер б). Теперь контейнер а будет отсупать от верха на 16dp и от ConstraintLayout слева на 16dp, в свою очеред контейнер б будет отсупать от контейнера а на 16dp и от верха на 16dp.
+
+	В меню pallete, которое ниже вкладок с открытыми файлами можно выбрать нужный виджет (представление).
+
+	При клике на виджет вокру него появляется рамка с кругляшками по периметру. Нажимаем на кругляшок и тянем к нужной стороне, должна появиться стрелка с хвостом. Когда притянули куда нужно, отпускаем - установка якоря относительно ConstraintLayout.
+
+	При клике на виджет ниже него появляются 2 иконки. Нажимаем на правую и видим в центре виджета появилась полоска. Зажимаем правой кнопкой полоску и тянем к нужному элементу, должна появиться стрелка с хвостом. Когда притянули куда нужно, отпускаем - горизонтальное выравнивание.
+
+	Выбрали один виджет, зажали Shift и выбрали остальные, затем нажали правую кнопку мыши и выбрали center horizontaly. (выравнивание по горизонтали)
+
+	Для редактирование отступов используем панель справа, должна выезжать при нажатии на виджет.
+
+	Чтобы поместить один виджет по центру нужно взять его и перетащить к верхнему краю
+*/
+
+/*
 	View.
+
+	Для того чтобы взаимодействовать с элементами интерфейса, нам надо как-то отличать их друг от друга. Для этого существует механизм присваивания id. 
 
 	У любого объекта View может быть связанный с ним целочисленный идентификатор, который служит для обозначения уникальности объекта View в иерархии. 
 	Пример: <Button android:id="@+id/my_button" />	
@@ -75,9 +119,9 @@
 		
 			- dp - единица измерения не зависящая от разрешения экрана
 
-	Представление имеет прямоугольную форму. Расположение представления определяется его координатами слева и сверху, а его размеры — параметрами ширины и высоты.
+	View имеет прямоугольную форму. Расположение view определяется его координатами слева и сверху, а его размеры — параметрами ширины и высоты.
 
-	Расположение представления можно получить путем вызова методов:
+	Расположение view можно получить путем вызова методов:
 
 		- getLeft()
 
@@ -87,9 +131,9 @@
 
 		- getBottom()
 
-	Оба этих метода возвращают расположение представления относительно его родительского элемента.
+	Оба этих метода возвращают расположение view относительно его родительского элемента.
 
-	Размер представления выражается его шириной и высотой. Виды:
+	Размер view выражается его шириной и высотой. Виды:
 
 		- измеренная ширина и измеренная высота (размер представления в границах своего родительского элемента)
 
@@ -182,7 +226,211 @@
 			android:layout_height="300dp"
 			android:background="#ff0000"
 			android:textSize="20sp" />
+
+		<View
+			android:layout_width="200dp"
+			android:layout_height="200dp"
+			android:background="#00ff00"
+			android:textSize="20sp" />
+
+		<View
+			android:layout_width="100dp"
+			android:layout_height="100dp"
+			android:background="#0000ff"
+			android:textSize="10sp" />
 	</FrameLayout>
+
+	Первым мы создали красный квадрат. Он находится «дальше» всех от нас. Вторым создали зеленый, он находится «над» красным квадратом. Ну и больше всех координата Z у синего квадрата.
+
+	FrameLayout не поддерживает гравитацию, но её можно реализовать через дочерние элементы.
+	Пример:
+
+		<?xml version="1.0" encoding="utf-8"?>
+		<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent">
+		 
+		    <View
+		        android:layout_width="300dp"
+		        android:layout_height="300dp"
+		        android:background="#ff0000"
+		        android:layout_gravity="center"
+		        android:textSize="20sp" />
+		 
+		    <View
+		        android:layout_width="200dp"
+		        android:layout_height="200dp"
+		        android:layout_gravity="center"
+		        android:background="#00ff00"
+		        android:textSize="20sp" />
+		 
+		    <View
+		        android:layout_width="100dp"
+		        android:layout_height="100dp"
+		        android:layout_gravity="center"
+		        android:background="#0000ff"
+		        android:textSize="20sp" />
+		 
+		</FrameLayout>
+
+	Можно комбинировать расположение элементов с помощью гравитации. Пример:
+
+		    <View
+		        android:layout_gravity="center_horizontal|bottom" />
+*/
+
+/*
+	RelativeLayout.
+
+	RelativeLayout — прямой наследник ViewGroup, в котором дочерние элементы располагаются относительно друг друга или же самого RelativeLayout.
+
+	В RelativeLayout дочерние элементы по умолчанию выравниваются по левому верхнему краю.
+
+	Варианты расположения дочерних элементов:
+
+		- Относительно самого RelativeLayout. За это отвечают атрибуты layout_alignParentStart,  layout_alignParentEnd, layout_alignParentTop, layout_alignParentBottom, layout_centerVertical, layout_centerHorizontal, layout_centerInParent.
+
+			<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent">
+				
+				<View 
+					android:layout_width="100dp"
+					android:layout_height="100dp"
+					android:backgroung="#ff0000"
+					android:textSize="20sp" />
+			<RelativeLayout/>
+
+			Чтобы выровнять элемент по центру относительно самого RelativeLayout, добавьте атрибут layout_centerInParent со значением true:
+
+				<View 
+					android:layout_centerInParent="true" />
+
+			Для центрирования по вертикали нужно использовать атрибут layout_centerVertical со значением true:
+
+				<View 
+					android:layout_centerVertical="true" />
+
+			Для выравнивания по горизонтали нужно испльзовать атрибут android:layout_centerHorizontal со значением true:
+
+				<View 
+					android:layout_centerVertical="true" />
+
+			Остались атрибуты layout_alignParentStart, layout_alignParentEnd, layout_alignParentTop, layout_alignParentBottom. Их можно комбинировать между собой (если они не противоречат друг другу). Нужно поместить квадрат в правый нижний угол экрана:
+
+				<View 
+					android:layout_alignParentEnd="true"
+					android:layout_alignParentRight="true"
+					android:layout_alignParentBottom="true" />
+
+
+		- Относительно других элементов внутри RelativeLayout. Для этого используются атрибуты layout_toStartOf, layout_toEndOf, layout_above, layout_below, layout_alignStart, layout_alignEnd, layout_alignTop, layout_alignBottom.
+
+			Существует два способа расположения одного дочернего элемента относительно другого:
+
+				- После/до/под/над элементом
+
+					- потребуются атрибуты layout_toStartOf, layout_toEndOf, layout_above, layout_below
+
+						Например android:layout_toEndOf="@id/red_view" задаёт относительно какого элемента будет располагаться тукущий элемент.
+
+						Полный пример:
+
+							<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+								android:layout_width="match_parent"
+								android:layout_height="match_parent">
+
+							    <View
+							        android:id="@+id/red_view"
+							        android:layout_width="100dp"
+							        android:layout_height="100dp"
+							        android:layout_centerInParent="true"
+							        android:background="#ff0000"
+							        android:textSize="20sp" />
+
+							    <View
+							        android:layout_width="100dp"
+							        android:layout_height="100dp"
+							        android:layout_toEndOf="@id/red_view"
+							        android:layout_toRightOf="@id/red_view"
+							        android:background="#00ff00"
+							        android:textSize="20sp" />
+
+							    <View
+							        android:layout_width="100dp"
+							        android:layout_height="100dp"
+							        android:layout_toStartOf="@id/red_view"
+							        android:layout_toLeftOf="@id/red_view"
+							        android:background="#0000ff"
+							        android:textSize="20sp" />
+							</RelativeLayout>
+
+				- По краю элемента — левому, правому, верхнему или нижнему
+
+					- потребуются атрибуты layout_alignStart, layout_alignEnd, layout_alignTop, layout_alignBottom
+
+						Мы просто добавили атрибут layout_alignTop ко второму и третьему View, и они автоматически выровнялись по верхнему краю первого View.
+
+						<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+						    android:layout_width="match_parent"
+						    android:layout_height="match_parent">
+						 
+						    <View
+						        android:id="@+id/red_view"
+						        android:layout_width="100dp"
+						        android:layout_height="100dp"
+						        android:layout_centerInParent="true"
+						        android:background="#ff0000"
+						        android:textSize="20sp" />
+						 
+						    <View
+						        android:layout_width="100dp"
+						        android:layout_height="100dp"
+						        android:layout_toEndOf="@id/red_view"
+						        android:layout_toRightOf="@id/red_view"
+						        android:layout_alignTop="@id/red_view"
+						        android:background="#00ff00"
+						        android:textSize="20sp" />
+						 
+						    <View
+						        android:layout_width="100dp"
+						        android:layout_height="100dp"
+						        android:layout_toLeftOf="@id/red_view"
+						        android:layout_alignTop="@id/red_view"
+						        android:layout_toStartOf="@id/red_view"
+						        android:background="#0000ff"
+						        android:textSize="20sp" />
+						 
+						</RelativeLayout>
+*/
+
+/*
+	Гравитация.
+
+	У лэйаутов есть понятие gravity. Gravity задает положение элемента внутри контейнера. 
+
+	Гравитация может быть следующей:
+		bottom — элемент «прижимается» к нижней границе контейнера
+
+		center — элемент располагается в центре контейнера
+
+		center_horizontal — элемент находится в центре по оси X
+
+		center_vertical — элемент находится в центре по оси Y
+
+		end — элемент находится «в конце» контейнера. Обычно это означает, что он будет находиться справа, но на локали с написанием справа-налево он будет находиться слева
+
+		start — элемент находится «в начале» контейнера. Обычно — слева, на RTL локалях — справа
+
+		top — элемент «прижимается» к верхней границе контейнера
+
+		left и right использовать не рекомендуется, поскольку это вызовет проблемы с версткой на RTL локалях.
+
+	Гравитация может быть задана двумя способами:
+
+		- Атрибутом gravity у лэйаута. В таком случае она будет применена для всех дочерних элементов
+
+		- Атрибутом layout_gravity у дочернего элемента. Тогда она будет применена только для этого элемента.
 */
 
 /*
@@ -198,4 +446,24 @@
 
 	android:textSize="20sp" - задаёт размер те
 
+*/
+
+/*
+	Значения измерения.
+
+	dp - независимые от плотности пиксели, единица измерения основанная на плотности экрана. 
+
+		Эти единицы относятся к экрану 160 точек на дюйм (точек на дюйм), на котором 1dp примерно равно 1px. При работе на экране с более высокой плотностью количество пикселей, используемых для рисования 1dp, масштабируется в соответствии с коэффициентом, соответствующим типу экрана. Аналогично, когда на экране с более низкой плотностью количество пикселей, используемых для 1dp, уменьшается.
+
+	sp - маштабируемые пиксели, масштабируется по предпочтению размера шрифта пользователя.
+
+		Рекомендуется использовать этот аппарат при задании размеров шрифта, поэтому они будут настроены как по плотности экрана, так и по предпочтениям пользователя.
+
+	px - пиксели, единица измерения, которая соответствует фактическим пикселям на экране. 
+
+		Эта единица измерения не рекомендуется, поскольку каждое устройство может иметь различное количество пикселей на дюйм и может иметь больше или меньше общих пикселей, доступных на экране.
+
+	mm - милиметры, единица измерения на основе физического размера экрана.
+
+	in - дюймы, единица измерения на основе физического размера экрана.
 */

@@ -31,3 +31,8 @@
 		$file->set_model(new MySQLUserModel);
 */
 
+/*
+	Вывод одной записи.
+
+	DB::table('users')->where('id', '=', $id)->first();
+*/
