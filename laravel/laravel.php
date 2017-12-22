@@ -14,7 +14,7 @@
 	            'App\Services\File\YBFile'
 	        );
 	    }
-	
+
 	Код выше аналогичен моему кода на чистом php:
 
 		class User
@@ -29,6 +29,14 @@
 
 		$file = new User();
 		$file->set_model(new MySQLUserModel);
+
+	Схема подключения:
+
+		- создаём сервис провайдер (обычно лежат по адресу App\Providers), например FileServiceProvider
+
+		- создаём сервис (обычно лежат адресу App\Services), например IPayment.php - ApiPayment.php
+
+		- подключаем сервис провайдер в файле app.php
 */
 
 /*
