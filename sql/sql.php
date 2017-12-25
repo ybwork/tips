@@ -377,6 +377,13 @@ $sql = 'DELETE FROM users WHERE id = :id';
 */
 $sql = 'DELETE FROM customers WHERE num = ANY (SELECT num FROM selespeople WHERE city = London)';
 
+/*
+	Удаление первичного ключа
+*/
+ALTER TABLE table_name CHANGE key_field_name key_field_name INTEGER NOT NULL
+
+ALTER TABLE table_name DROP PRIMARY KEY
+
 ////////////////////////////////////// Обновление //////////////////////
 
 /*
