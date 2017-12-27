@@ -1,0 +1,35 @@
+Официально акредитованные студии: 
+
+	- redmadrobot, surf, cleverpumkin (позитивно относятся к удалённым сотрудникам, быстрый рост)
+
+Удалёнка: 
+
+	- мой круг
+
+	- группы в telegram и slack
+
+Необходимые навыки:
+
+	- Java
+
+	- Kotlin
+
+	- Управление процессами, потоками и памятью в Android
+
+	- Паттерны MVP, MVC, Dependency Injection
+
+	- Android SDK
+
+	- Базы данных SQLite, Realm
+
+	- Библиотеки: Dagger, Retrofit, LeakCanary
+
+Советы:
+
+	- Проходить все собеседования, кто бы и на каких бы условиях не позвал
+
+	- Бесплатные книги по программированию - https://github.com/EbookFoundation/free-programming-books
+
+	- Чаты для программистов - https://github.com/goq/telegram-list
+
+	- Android подкаст - https://androiddev.apptractor.ru
