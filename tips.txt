@@ -1,0 +1,232 @@
+$(document).ready(function() {
+	$(document).on('submit', '#form', function(e) {
+		e.preventDefault();
+
+		var form = $(this);
+		var action = form.attr('action');
+		var method = form.attr('method');
+		var data = new FormData(form[0]);
+
+		$.ajax({
+			url: action,
+			type: method,
+			data: data,
+			contentType: false,
+			cache: false,
+			processData: false,
+
+			success: function(data) {},
+			error: function(e) {}
+		});
+	});
+});
+
+// В контроллере echo json_encode($response);
+
+
+/*
+	php composer.phar install - запускаем в корне сайта и он устанавливает всё из composer.json
+
+	composer install - установка пакетов через composer.json в openserver
+
+	composer require name_folder/name_package - установка нового пакета, без composer.json
+*/
+
+try {
+	// Проверяемое выражение (исключение выбрасывается внутни Auth::login)
+    $user = Auth::login($login, $password);
+} catch (Exception $e) {
+	// Отловили ошибку
+    echo $e->getMessage();
+}
+
+// Продолжение выполнения
+echo "Hello World";
+
+// Auth.php
+if (!$login || !$password) {
+    throw new Exception('Поля логин и пароль должны быть заполнены!');
+}
+
+/*
+	Источник: http://www.php.su/articles/?cat=fs&page=005
+
+	Работа с файлами разделяется на 3 этапа:
+
+		1. Открытие файла
+			- $fp = fopen('counter.txt', 'a');
+
+		2. Манипуляции с данными
+			- $test = fwrite($fp, $mytext);
+			
+		3. Закрытие файла
+			- fclose($fp);
+*/
+
+/*
+	1) Скачали с сайта
+	2) При установки если работаем под windows выбираем use git from windows
+	3) Открыли консоль и по очереди ввели команды настройки:
+	- git config --global user.name "Ilya Kaduk"
+	- git config --global user.email "costilek@gmail.com"
+	
+	- git clone
+	- git init (git fetch)
+	- git status (git merge name_his_branch name_my_branch)
+	- git add . (git add name_fix_branch)
+	- git commit -m "overview"
+	- git status
+	- git branch name - создал ветку
+	- git checkout name_branch - переключился на данную ветку
+	- git branch - проверил на какой ветке в данный момент
+	- git remote add short_name link_on_project
+	- git push short_name name_branch
+	- git log
+*/
+
+
+// Установили соединение и выставили настройки
+$dsn = "mysql:host={localhost};dbname={auth}";
+$user = root;
+$password = 1234;
+
+$db = new PDO($dsn, $user, $password);
+
+// Запускает SQL запрос на выполнение и возвращает количество строк, задействованных в ходе его выполнения
+$db->exec('set names utf8');
+
+$sql = 'SELECT id, login, password FROM users WHERE login = :login';
+
+// Подготавливает запрос к выполнению и возвращает ассоциированный с этим запросом объект
+$query = $db->prepare($sql);
+
+
+
+// Привязывает параметр запроса к переменной
+$query->bindParam(':login', $login, PDO::PARAM_INT);
+
+// Запускает подготовленный запрос на выполнение
+$query->execute();
+
+// Возвращает результат в виде массива
+$user = $query->fetch();
+
+// Select
+$sql = 'SELECT id, name FROM users';
+
+// Insert
+$sql = 'INSERT INTO users (name) VALUES (name)';
+
+// Update
+$sql = 'UPDATE cart SET col_name2 = value2, col_name2 = value2';
+
+// Delete
+$sql = 'DELETE FROM users WHERE id = id';
+
+// Join (автор1 - книга1, автор1 - книга2)
+$sql = 'SELECT a.id, a.name, a.fam,  b.book as books FROM author a JOIN books b ON a.id = b.id_author';
+
+// Join (автор1 - книга1, книга2; автор2 - книга1, книга2)
+$sql = 'SELECT a.id, a.name, GROUP_CONCAT(DISTINCT t.name ORDER BY t.name ASC SEPARATOR ', ') AS themes FROM authors a LEFT JOIN themes t ON a.id = t.author_id GROUP BY a.id';
+
+// Join из трёх таблиц (автор1 - книга1, книга2; автор2 - книга1, книга2)
+$sql = "SELECT cat.id, cat.name, GROUP_CONCAT(DISTINCT sub.id, sub.name SEPARATOR ', ') AS subcategories FROM categories cat INNER JOIN categories_subcategories cat_sub ON cat.id = cat_sub.category_id INNER JOIN subcategories sub ON cat_sub.subcategory_id = sub.id GROUP BY cat.id";
+
+// Subqueries (альтернатива join)
+$sql = "SELECT name FROM users WHERE id_user IN (SELECT id_author FROM topics WHERE topic_id = topic_id)";
+
+/*
+	Secure Shell — «безопасная оболочка») — сетевой протокол, позволяющий производить удалённое управление операционной системой.
+
+	SSH допускает выбор различных алгоритмов шифрования. SSH-клиенты и SSH-серверы доступны для большинства сетевых операционных систем.
+
+	SSH позволяет безопасно передавать в незащищённой среде практически любой другой сетевой протокол. Таким образом, можно не только удалённо работать на компьютере через командную оболочку, но и передавать по шифрованному каналу звуковой поток или видео (например, с веб-камеры).
+*/
+
+/*
+	Хранимая процедура - это способ инкапсуляции повторяющихся действий в MySQL. Даёт возможност изоляции пользователей от таблиц базы данных. Это позволяет давать доступ к хранимым процедурам, но не к самим данным таблиц. 
+
+	Инструмент, в котором я работаю, называется MySQL Query Browser, он достаточно стандартен для взаимодействия с базами данных. Инструмент командной строки MySQL - это еще один превосходный выбор. Потому что phpmyadmin не может работать с процедурами.
+
+	Ссылка на изучение: http://ruseller.com/lessons.php?id=1189
+*/
+
+/*
+	Триггер - это правило, которое помещается вами в таблицу, и при выполнении DELETE, UPDATE или INSERT совершает дополнительные действия.
+
+	Такой подход создает некоторую избыточность в основном запросе, но теперь нет проходов двух разных пакетов до сервера вашей базы данных, чтобы выполнить два разных действия, что в целом способствует улучшению производительности.
+
+	Таким образом Вы можете определить триггер, которые будет выполняться перед DELETE или после DELETE. Это значит, что можно иметь один триггер, который выполнится до и совершенно другой, который выполнится после. 
+
+	Ссылка на ресурс для изучения: http://ruseller.com/lessons.php?rub=28&id=630
+*/
+
+/*
+
+	CREATE TRIGGER `tutorial`.`before_delete_carts` - 	создать триггер для базы данных  “tutorial”, который будет иметь имя “before_delete_carts”
+
+	BEFORE DELETE ON `trigger_carts` - определение триггера. Мы говорим MySQL, что перед тем, как провести удаление из данной таблицы, для каждой строки нужно сделать что-то. 
+
+	Что нужно сделать, объясняется далее между BEGIN и END.
+
+	Перед тем, как удалить из trigger_carts, нужно взять  OLD.cart_id и также удалить из trigger_cart_items.
+*/
+$sql = "CREATE TRIGGER `tutorial` . `before_delete_carts` BEFORE DELETE ON `carts` FOR EACH ROW BEGIN DELETE FROM trigger_cart_items WHERE OLD.cart_id = cart_id END";
+
+/*
+	sudo "команда" - суперпользователь
+
+	sudo -s - сохранить суперпользователя в контексте данного терминала
+
+	cd - перейти в корневой каталог
+
+	cd ../ - перейти на один каталог ниже
+
+	sudo apt-get ... - обычно гуглится, означает, что идет установка пакета (-g вроде глобально, а не в текущую директорию)
+
+	ls - показывает все файлы и каталоги внутри текущего каталога
+
+	sudo trash-empty - это плагин для удаления корзины (нужно устанавливать, когда система не может очистить корзину)
+
+	composer install и composer update - когда ты находишься в каталоге, в котором есть composer.json, устанавливает/обновляет все зависимости
+
+	ctrl+c - отмена текущего действия (если консоль выполняет что-либо)
+
+	ctrl+shift+c - копировать
+
+	ctrl+shift+v - вставить
+*/
+
+
+/*
+	Свои настройки следует сохранять в файлы, расположенные в директории /etc/apache2/conf-available. Для подключения или отключения своих настроек следует использовать соответствующие команды a2enconf или a2disconf. Пример подключения файла со своими настройками: 
+		- sudo a2enconf <config-name>
+
+	sudo service apache2 restart
+
+	sudo apt-get install apache2
+
+	Файлы настроек виртуальных хостов хранятся в /etc/apache2/sites-available/*.conf. По умолчанию в Apache уже настроен один виртуальный хост. Его настройки лежат в файле 000-default.conf. Вы можете использовать этот виртуальный хост в качестве примера.
+
+	Пример настройки виртуального хоста:
+		<VirtualHost *:80>
+		    #Имя хоста
+		    ServerName host1.server1
+		    #Корневая папка хоста
+		    DocumentRoot /var/www/host1.server1
+		    <Directory /var/www/host1.server1>
+		        #Разрешение на перезапись всех директив при помощи .htaccess
+		        AllowOverride All
+		    </Directory>
+		</VirtualHost>
+	Назовите файл настройки именем вашего хоста host1.server1.conf и сохраните.
+	После создания файла настроек допишите в /etc/hosts имя вашего хоста: 
+		127.0.0.1    host1.server1
+	Для включения созданного виртуального хоста используется утилита a2ensite: 
+		sudo a2ensite host1.server1
+	Отключается хост аналогично утилитой a2dissite:
+		sudo a2dissite host1.server1
+
+	Документация: http://help.ubuntu.ru/wiki/apache2
+*/
+
