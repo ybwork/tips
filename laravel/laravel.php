@@ -36,7 +36,16 @@
 
 		- создаём сервис (обычно лежат адресу App\Services), например IPayment.php - ApiPayment.php
 
-		- подключаем сервис провайдер в файле app.php
+		- подключаем сервис провайдер в файле app.php, массив providers
+*/
+
+/*
+	Схема связывания абстрактного класса с реализацией.
+
+	В файле сервис провайдера, например FileServiceProvider в методе register пишем это:
+
+		$container = app();
+		$container->bind(AbstractClass::class, RealizationClass::class);
 */
 
 /*
