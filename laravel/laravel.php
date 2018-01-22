@@ -53,3 +53,7 @@
 
 	DB::table('users')->where('id', '=', $id)->first();
 */
+
+/*
+	Для авторизации через соцсети используем Laravel Socialite
+*/
