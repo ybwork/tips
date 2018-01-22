@@ -89,3 +89,19 @@
 /*
     Вместо использования array_push() для добавления одного элемента в массив, лучше использовать $array[] = 1, потому что в этом случае не происходит затрат на вызов функции.
 */
+
+/*
+    Базовая аутентификация. Для работы нужно передавать логин и пароль в заголовках. Нарпимер так:
+        
+        $url = 'https://test.com';
+        $curl = curl_init();
+        $headers = array(
+            'Content-Type:application/json',
+            'Authorization: Basic '. base64_encode("webclient:peace")
+        );
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($curl, CURLOPT_URL, $url);
+        $result = curl_exec($ch);
+        $status_code = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
+        curl_close($ch);
+*/
