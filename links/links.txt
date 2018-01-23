@@ -1,0 +1,39 @@
+- Inversion of Control: Методы реализации с примерами на PHP (https://habrahabr.ru/post/244517/)
+
+- Шпаргалка по SOLID-принципам с примерами на PHP (https://habrahabr.ru/post/208442/)
+
+- Три ключевых принципа ПО, которые вы должны понимать (https://habrahabr.ru/post/144611/)
+
+- Как пасти котов. Наставление для программистов, руководящих другими программистами
+
+- SSL gratuito en vestaCP (https://www.youtube.com/watch?v=zk-eSvKsd4s)
+
+- Chat Room con Nodejs + socket.io (https://www.youtube.com/watch?v=d6arCMBlEgI)
+
+- Разработка web API (https://habrahabr.ru/post/181988/)
+
+- OAuth 2.0 простым и понятным языком (https://habrahabr.ru/company/mailru/blog/115163/)
+
+- Обзор способов и протоколов аутентификации в веб-приложениях (https://habrahabr.ru/company/dataart/blog/262817/)
+
+- Хорошие практики Laravel (https://github.com/alexeymezenin/laravel-best-practices/blob/master/russian.md)
+
+- Как писать API? (https://toster.ru/q/23892)
+
+- Ionic 3 API (https://www.djamware.com/post/59924f9080aca768e4d2b12e/ionic-3-consuming-rest-api-using-new-angular-43-httpclient)
+
+- Учебник Java 8 (https://urvanov.ru/2016/03/23/%D1%83%D1%87%D0%B5%D0%B1%D0%BD%D0%B8%D0%BA-java-8/)
+
+- Уроки по android:
+
+    - https://guides.codepath.com/android
+
+    - https://www.udacity.com/course/android-basics-user-interface--ud834
+
+    - http://www.vogella.com/tutorials/Android/article.html
+
+    - https://codelabs.developers.google.com/?cat=Android
+
+    - https://code.tutsplus.com/tutorials/a-beginners-guide-to-http-and-rest--net-16340
+
+    - https://learndroid.e-legion.ru/users/sign_in
