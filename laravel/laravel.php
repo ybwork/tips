@@ -55,5 +55,7 @@
 */
 
 /*
-	Для авторизации через соцсети используем Laravel Socialite
+	Для авторизации через соцсети используем Laravel Socialite.
+
+	Сайт, где есть почти все соцсети - https://socialiteproviders.github.io/
 */
