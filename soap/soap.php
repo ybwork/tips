@@ -26,7 +26,11 @@
         'trace'          => 1
     );
 
-    $url = 'http://172.100.100.21/Test_KP_Donskoy/ws/inpk.1cws?wsdl';
+    $url = 'http://80.254.115.133:7080/Test_KP_Donskoy/ws/inpk.1cws?wsdl';
 
     $client = new SoapClient($url, $options);
     var_dump($client->GetClientBalanceTest()); die();
+
+/*
+    Если идёт работа с 1С и мы из php кода обращаемся по адрессу, который редиректит например с порта 7080 на 80, то нужно сделать 2 одинаковых порта, например 7080 и 7080. 
+*/
