@@ -65,3 +65,7 @@
 
 	public_path();
 */
+
+/*
+	php artisan view:clear
+*/
