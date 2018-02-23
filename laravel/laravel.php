@@ -63,7 +63,7 @@
 /*
 	Удаление файлов с описанием таблиц (файлы миграции).
 
-	Удалили нужный файл и выполнили composer dump-autoload.
+	Удалили нужный файл, например create_donates_table.php и выполнили composer dump-autoload.
 */
 
 /*
@@ -74,4 +74,10 @@
 
 /*
 	php artisan view:clear
+*/
+
+/*
+	Disable csrf token.
+
+	Go to app/Http/Kernel.php and comment string 'Illuminate\Foundation\Http\Middleware\VerifyCsrfToken'
 */
