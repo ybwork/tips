@@ -67,5 +67,27 @@
 */
 
 /*
+	Если проблемы с встроенным кэшированием html.
+
 	php artisan view:clear
+*/
+
+/*
+	Если после pull не запускается проект.
+
+	composer update
+
+		или
+
+	composer update --no-scripts  
+*/
+
+/*
+	Параметр валидации min.
+
+	Рабатает вместе с numeric. Пример:
+
+		$request->validate([
+			'amount' => 'required|numeric|min:50'
+		]);
 */
