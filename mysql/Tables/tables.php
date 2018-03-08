@@ -1,0 +1,10 @@
+<?php
+
+/*
+    CREATE TABLE logs (
+        id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
+        overview TEXT NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+*/

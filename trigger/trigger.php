@@ -1,23 +1,82 @@
 <?php
 
 /*
-	Ссылка на ресурс для изучения: http://ruseller.com/lessons.php?rub=28&id=630
-
 	Триггер - это правило, которое помещается вами в таблицу, и при выполнении DELETE, UPDATE или INSERT совершает дополнительные действия.
 
 	Такой подход создает некоторую избыточность в основном запросе, но теперь нет проходов двух разных пакетов до сервера вашей базы данных, чтобы выполнить два разных действия, что в целом способствует улучшению производительности.
 
 	Таким образом Вы можете определить триггер, которые будет выполняться перед DELETE или после DELETE. Это значит, что можно иметь один триггер, который выполнится до и совершенно другой, который выполнится после.
+
+    Триггер создаётся в phpmyadmin или консоль
+
+    Использовать Select нельзя, но можно объявить переменные и в них записывать значения из select (см.пример ниже). При этом имена переменных должны отличаться от имён полей в таблице
+
+    Если возникает ошибка, говорящая о том, что поля не существует, то нужно проверить таблицу в которую идёт запись, обновление, или удаление. (внутри триггера)
+
+    Выдаёт ошибку если есть NULL значения
+
+    Нельзя задать несколько триггеров для одной таблице
 */
 
-$sql = "CREATE TRIGGER `tutorial` . `before_delete_carts` BEFORE DELETE ON `carts` FOR EACH ROW BEGIN DELETE FROM trigger_cart_items WHERE OLD.cart_id = cart_id END";
 /*
+    DELIMITER |
+        CREATE TRIGGER after_create_auto AFTER INSERT ON autos FOR EACH ROW
+        BEGIN
+            DECLARE user_name VARCHAR(255);
+            DECLARE status_auto VARCHAR(255);
 
-	CREATE TRIGGER `tutorial`.`before_delete_carts` - создать триггер для базы данных “tutorial”, который будет иметь имя “before_delete_carts”
+            SELECT last_name INTO user_name FROM users WHERE id = NEW.user_id;
+            
+            IF NEW.personal = 1 THEN
+                SET status_auto = 'персональный';
+            ELSE
+                SET status_auto = 'гостевой';
+            END IF;
 
-	BEFORE DELETE ON `trigger_carts` - определение триггера. Мы говорим MySQL, что перед тем, как провести удаление из данной таблицы, для каждой строки нужно сделать что-то. 
+            INSERT INTO logs SET overview = CONCAT(user_name, ' ', 'добавил', status_auto, ' ',  'автомобиль', ' ', NEW.mark, NEW.model, ' ', '(', NEW.number, ')';
+        END;|
+    DELIMITER ;
 
-	Что нужно сделать, объясняется далее между BEGIN и END.
+    DELIMITER |
+        CREATE TRIGGER after_update_auto AFTER UPDATE ON guests FOR EACH ROW
+        BEGIN
+            DECLARE user_name VARCHAR(255);
+            DECLARE status_auto VARCHAR(255);
 
-	Перед тем, как удалить из trigger_carts, нужно взять  OLD.cart_id и также удалить из trigger_cart_items.
+            SELECT last_name INTO user_name FROM users WHERE id = OLD.user_id;
+
+            IF NEW.personal = 1 THEN
+                SET status_auto = 'персональный';
+            ELSE
+                SET status_auto = 'гостевой';
+            END IF;
+
+            INSERT INTO logs SET overview = CONCAT(user_name, ' ', 'обновил', ' ', status_auto, ' ',  'автомобиль', ' ', NEW.mark, ' ', NEW.model, ' ', '(', NEW.number, ')');
+        END;|
+    DELIMITER ;
+    
+    DELIMITER |
+        CREATE TRIGGER after_delete_auto AFTER DELETE ON autos FOR EACH ROW BEGIN
+            DECLARE user_name VARCHAR(255);
+            DECLARE status_auto VARCHAR(255);
+
+            IF OLD.personal = 1 THEN
+                SET status_auto = 'персональный';
+            ELSE
+                SET status_auto = 'гостевой';
+            END IF;
+
+            SELECT last_name INTO user_name FROM users WHERE id = OLD.user_id;
+
+            INSERT INTO logs SET overview = CONCAT(user_name, ' ', 'удалил', ' ', status_auto, ' ',  'автомобиль', ' ', OLD.mark, ' ', OLD.model, ' ', '(', OLD.number, ')');
+        END;|
+    DELIMITER ;
+*/
+
+/*
+    Parametrs:
+
+        NEW.id - id last created record
+
+        DECLARE note VARCHAR(255) DEFAULT ''; - устанавливает переменную и дефолтное значение для неё
 */

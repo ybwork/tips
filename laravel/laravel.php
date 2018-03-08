@@ -73,11 +73,33 @@
 */
 
 /*
+	Если проблемы с встроенным кэшированием html.
+
 	php artisan view:clear
 */
 
 /*
+<<<<<<< HEAD
 	Disable csrf token.
 
 	Go to app/Http/Kernel.php and comment string 'Illuminate\Foundation\Http\Middleware\VerifyCsrfToken'
+=======
+	Если после pull не запускается проект.
+
+	composer update
+
+		или
+
+	composer update --no-scripts  
+*/
+
+/*
+	Параметр валидации min.
+
+	Рабатает вместе с numeric. Пример:
+
+		$request->validate([
+			'amount' => 'required|numeric|min:50'
+		]);
+>>>>>>> feaedc0a836726ceb8d146e75bc2a9750dcbbc83
 */
