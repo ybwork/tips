@@ -61,6 +61,12 @@
 */
 
 /*
+	Удаление файлов с описанием таблиц (файлы миграции).
+
+	Удалили нужный файл, например create_donates_table.php и выполнили composer dump-autoload.
+*/
+
+/*
 	Базовый путь (включает в себя корректный путь на хостинге).
 
 	public_path();
@@ -73,6 +79,11 @@
 */
 
 /*
+<<<<<<< HEAD
+	Disable csrf token.
+
+	Go to app/Http/Kernel.php and comment string 'Illuminate\Foundation\Http\Middleware\VerifyCsrfToken'
+=======
 	Если после pull не запускается проект.
 
 	composer update
@@ -90,4 +101,5 @@
 		$request->validate([
 			'amount' => 'required|numeric|min:50'
 		]);
+>>>>>>> feaedc0a836726ceb8d146e75bc2a9750dcbbc83
 */
