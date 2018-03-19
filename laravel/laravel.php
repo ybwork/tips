@@ -79,11 +79,6 @@
 */
 
 /*
-<<<<<<< HEAD
-	Disable csrf token.
-
-	Go to app/Http/Kernel.php and comment string 'Illuminate\Foundation\Http\Middleware\VerifyCsrfToken'
-=======
 	Если после pull не запускается проект.
 
 	composer update
@@ -101,5 +96,10 @@
 		$request->validate([
 			'amount' => 'required|numeric|min:50'
 		]);
->>>>>>> feaedc0a836726ceb8d146e75bc2a9750dcbbc83
+*/
+
+/*
+	Кода переносишь файлы модели User.php в папку models.
+
+	Нужно прописать правильные namespaces во всех контроллерах связанных с авторизацией и в config/auth.php
 */
