@@ -103,3 +103,11 @@
 
 	Нужно прописать правильные namespaces во всех контроллерах связанных с авторизацией и в config/auth.php
 */
+
+/*
+	Для изменения одного из полей request->all()
+
+	Нужно подключить Input с помощью use Illuminate\Support\Facades\Input;
+
+	Затем для нужного поля задать новое значение Input::merge(['field_name' => $new_value]);
+*/
