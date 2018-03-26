@@ -71,6 +71,34 @@
             INSERT INTO logs SET overview = CONCAT(user_name, ' ', 'удалил', ' ', status_auto, ' ',  'автомобиль', ' ', OLD.mark, ' ', OLD.model, ' ', '(', OLD.number, ')');
         END;|
     DELIMITER ;
+
+    DELIMITER |
+        CREATE TRIGGER before_update_user BEFORE UPDATE ON users FOR EACH ROW BEGIN
+        BEGIN
+            DECLARE userPhone VARCHAR(255);
+            
+            SELECT phone INTO userPhone FROM user_phones WHERE user_id = NEW.id AND status = 1 LIMIT 1;
+            
+            IF userPhone IS NOT NULL AND NEW.email IS NOT NULL THEN
+                SET NEW.role = 3;
+            END IF;
+            
+            INSERT INTO logs SET overview = CONCAT(NEW.last_name, ' ', 'изменил(а) личные данные');
+        END;|
+    DELIMITER ;
+
+    DELIMITER |
+        CREATE TRIGGER after_update_user_phones AFTER UPDATE ON user_phones FOR EACH ROW BEGIN
+        BEGIN
+            DECLARE userEmail VARCHAR(255);
+            
+            SELECT email INTO userEmail FROM users WHERE id = NEW.user_id;
+            
+            IF userEmail IS NOT NULL AND NEW.status = 1 THEN
+                UPDATE users SET role = 3 WHERE id = NEW.user_id;
+            END IF;
+        END;|
+    DELIMITER ;
 */
 
 /*
@@ -79,4 +107,8 @@
         NEW.id - id last created record
 
         DECLARE note VARCHAR(255) DEFAULT ''; - устанавливает переменную и дефолтное значение для неё
+*/
+
+/*
+    Когда нужно обновить текущие данные до update, нужно присвоить новое значение этим данные через SET NEW.status = 1
 */

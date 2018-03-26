@@ -124,7 +124,9 @@
 
         - имена таблиц (users_categories)
 
-        - имена переменных ($users_without_indications)
+        - имена переменных ($usersWithoutIndications)
 
         - имена функций (public function getUsersWithoutIndications())
+
+        - имена столбцов в базе данных (model_car)
 */
