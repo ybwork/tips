@@ -120,3 +120,31 @@
 		'overview' => 'Операция успешно выполнена'
 	], 200);
 */
+
+/*
+	Если нужно поменять имена полей для валидации
+
+	Открываем resources->lang->ru->validation.php
+
+	Добавляем в массив attributes новое значение для нужного поля:
+
+		'birthday' => '"Дата рождения"'
+*/
+
+/*
+	Создание хэлпера
+
+		1. Создали директорию App->Helpers->Helper.php
+
+		2. Создали сервис провайдер HelperServiceProvider.php
+
+			- В методе register подключили Helper.php - require_once base_path() . '/Helpers/Helper.php';
+
+		3. Открыли файл config/app.php и добавили:
+
+			- в массив providers Illuminate\View\ViewServiceProvider::class
+
+			- в массив aliases 'Helper' => App\Helpers\Helper::class
+
+		4. Воспользовались хэлпером в любом месте - Helper::getUser();
+*/
