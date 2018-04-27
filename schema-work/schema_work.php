@@ -104,11 +104,22 @@
             Эта функция выполняет сразу три операции: перебирает всех работников, проверяет начисленны ли работнику какие-то выплаты и наконец производит оплату. Поэтому её лучше разбить на 3 отдельных.
 */
 
+// Примеры и правила комментирования:
+
 /**
  * Run in metres
  *
- * @param int $metres overview
- * @return object|array overview
+ * @param  string|null $guard overview (если тип параметра задан по умолчанию, но может быть и другой тип)
+ *
+ * @param string $argument1 Description for argument 1.
+ *
+ * @param Request $request (если внедрение зависимостей)
+ *
+ * @return object|array (если несколько вариантов ответа, ошибки не считаются)
+ *
+ * @return void
+ *
+ * @return mixed
  */
 
 /*
