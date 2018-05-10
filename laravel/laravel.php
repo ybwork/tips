@@ -177,3 +177,12 @@
 	Если нужно чтобы timestamp был CURRENT_TIMESTAMP
 */
 $table->timestamp('created_at')->useCurrent();
+
+/*
+	Если нужно добавить foreign key, то выкатываем миграции в по очереди.
+	Сначала идёт таблица без ключа. Потом таблица с foreign key.
+*/
+$table->unsignedInteger('user_id');
+$table->foreign('user_id')
+      ->references('id')->on('users')
+      ->onDelete('cascade');
