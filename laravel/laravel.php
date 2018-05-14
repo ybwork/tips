@@ -186,3 +186,39 @@ $table->unsignedInteger('user_id');
 $table->foreign('user_id')
       ->references('id')->on('users')
       ->onDelete('cascade');
+
+/*
+	Настройка отправки писем на почту.
+
+	Нужно прописать всё необходимое в .env и в config/mail.php
+*/
+
+/*
+	Создание токенов.
+
+	Подключаем Str через use Illuminate\Support\Str;
+
+	Генерируем токен с помощью Str::random(60);
+*/
+
+/*
+	Создание контракта.
+
+	В любом месте проекта создали папку Contracts. 
+
+	Внутри этой папки создаём интерфейсы, например UserRepository.php
+
+	В любом месте приложения создаём реализацию созданного интерфейса, например Ormuser.php
+
+	Связываем интерфейс и реализацию в NameServiceProvider.php
+
+	Внедряем интерфейс через конструктор.
+*/
+
+/*
+	Показать последний выполненный запрос.
+
+	DB::enableQueryLog();
+	
+	DB::getQueryLog();
+*/

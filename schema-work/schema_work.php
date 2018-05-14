@@ -148,4 +148,6 @@
         - имена функций (public function getUsersWithoutIndications())
 
         - имена столбцов в базе данных (model_car)
+
+        - имена view (confirm_email.php)
 */
