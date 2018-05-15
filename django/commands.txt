@@ -1,0 +1,13 @@
+- virtualenv nameenv
+
+- folder_with_project\Scripts\activate
+
+- pip install django
+
+- django-admin startproject projectname
+
+- pip install psycopg2
+
+- python manage.py runserver
+
+- python manage.py startapp nameapp
