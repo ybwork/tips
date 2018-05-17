@@ -16,5 +16,5 @@
 
 - python manage.py migrate (выполняет миграции и автоматически обновляет базу данных)
 
-
+- python manage.py migrate name_app zero (откат миграций)
 

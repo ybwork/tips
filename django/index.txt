@@ -1,0 +1,13 @@
+- @require_http_methods(['PUT']) - декоратор, который создаёт ограничение на тип запроса
+
+- модули должны быть подключенны в name_app_project/settings.py/INSTALLED_APPS
+
+    'name_app.apps.NameAppConfig' ('auth.apps.AuthConfig')
+
+- Правило Django использовать пустую строку, вместо NULL.
+
+- email = model.CharField(max_length=255, db_index=True)
+
+- правой кнопкой на таблице -> View/Edit Data -> All rows - вставка данных через pgAdmin
+
+- чтобы отключить работу с сессиями нужно в MIDDLEWARE закомментировать MessageMiddleware, SessionMiddleware  и в INSTALLED_APPS закомментировать sessions, messages
