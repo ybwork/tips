@@ -24,3 +24,21 @@
 
 - для удаления пакета pip unistall package_name
 
+- для работы нового кода внесённого в models.py нужно выполнить 2 команды: python manage.py makemigrations и python manage.py migrate
+
+- для проверки типа используем isinstance(data, int)
+
+- для преобразования из json в dictionary используем json.load(request)
+
+- для работы валадатора создаём файл validators.py и кладём туда например такой код:
+
+    email_validator = EmailValidator()
+
+    def email():
+        try:
+            email_validator('test@gmail.com')
+        except ValidationError:
+            return 0
+
+        return 1 
+
