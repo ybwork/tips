@@ -96,3 +96,34 @@
     }
 
 
+- создание csrf_token можно найти в django.middleware.csrf
+
+        csrf_secret = _get_new_csrf_string()
+
+        api_key = _salt_cipher_secret(csrf_secret)
+
+- для использования транзакций можно использовать:
+
+    with transaction.atomic():
+
+        User.manager.create(data)
+
+        Company.manager.create(data)
+
+
+    @transaction.atomic
+    def create(request):
+        pass
+
+- чтобы выкинуть исключение 400 Bad request пишем
+
+    raise SuspiciousOperation
+
+- для вызова метода класса нужно создать экзэмпляр этого класса, а потом на его основе вызвать метод класса
+
+    class Helper:
+        def generate_api_key(self):
+            return 'new key'
+
+    helper = Helper()
+    helper.generate_api_key()

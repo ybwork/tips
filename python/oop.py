@@ -74,6 +74,16 @@ car.drive()
     """ Класс B наследует класс A """
     class B(A):
 
+    """ 
+    - для вызова метода класса нужно создать экзэмпляр этого класса, а потом на его основе вызвать метод класса
+    """
+    class Helper:
+        def generate_api_key(self):
+            return 'new key'
+
+    helper = Helper()
+    helper.generate_api_key()
+
 
 """ Перегрузка операторов """
 
