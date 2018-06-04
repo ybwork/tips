@@ -127,3 +127,20 @@
 
     helper = Helper()
     helper.generate_api_key()
+
+
+- ВАЖНО!!!! 
+
+    Не передавать весь request для преобразования из json в нужный для python формат, потому что помимо данных request содержит различные заголвки и другие объекты, которые не стоит изменять
+
+    json.load и json.loads это совершенно разные функции
+
+    Использовать json.loads для правильной сериализации
+
+        json.loads(request.body)
+
+- Сериализация
+
+    Если POST, PUT, DELETE методы, то используем json.loads(request.body)
+
+    Если GET, то к данным можно обратиться через request.GET.get('item_name')
