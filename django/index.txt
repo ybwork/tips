@@ -144,3 +144,12 @@
     Если POST, PUT, DELETE методы, то используем json.loads(request.body)
 
     Если GET, то к данным можно обратиться через request.GET.get('item_name')
+
+- Загрузка картинок
+
+    image = request.FILES['file']
+    fs.save(image.name, image)
+
+    images = request.FILES.getlist('files[]')
+    for image in images:
+        fs.save(image.name, image)
