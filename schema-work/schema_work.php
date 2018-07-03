@@ -131,11 +131,21 @@
  */
 
 /*
-    Правила именования:
+    Общее:
 
         - папки (htmt-css)
 
         - картинки (product-1)
+
+    Python:
+
+        - имена методов-функций create_user()
+
+        - имена классов UserView
+
+        - имена файлов модулей стоит делать короткими и лучше называть одним словом (sys.py)
+
+    PHP:
 
         - простые php файлы (autoload_register.php)
 
@@ -148,4 +158,6 @@
         - имена функций (public function getUsersWithoutIndications())
 
         - имена столбцов в базе данных (model_car)
+
+        - имена view (confirm_email.php)
 */
