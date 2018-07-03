@@ -438,9 +438,11 @@ while a < 6:
 		'text error'
 	return result
 
+- не обязательные аргументы функции:
 
+	def generate_json_response(data={}, status=200):
+	    return JsonResponse(data=data, status=status, safe=False)
 
-
-
+	generate_json_response(status=200)
 
 
