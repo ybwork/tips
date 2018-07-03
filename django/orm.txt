@@ -1,0 +1,3 @@
+Обновление поля во всех записях
+
+    Entry.objects.filter(pub_date__year=2007).update(headline='Everything is the same')
