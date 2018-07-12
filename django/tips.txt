@@ -153,3 +153,14 @@
     images = request.FILES.getlist('files[]')
     for image in images:
         fs.save(image.name, image)
+
+- Передача условия в запрос
+    
+    def get(**condition):
+        user_model.objects.get(**condition)
+
+    get(api_key=api_key)
+
+    Получаем:
+
+        user_model.objects.get(api_key=api_key)
