@@ -8,3 +8,11 @@
 
 - sudo find / |grep "\.pem" (поиск файлов)
 
+- pwd (показывает имя текущей директории)
+
+- mkdir name_dir (создаёт директорию)
+
+- pip install uwsgi
+
+
+
