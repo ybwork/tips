@@ -38,7 +38,7 @@ insider
 
     Установили пакетный менеджер. sudo apt-get install -y python3-pip
 
-    Перешли в корневую директорию.
+    Перешли в корневую директорию (/var/www/www-root/data/www/188.225.39.47/
 
     Поставили виртуальное окружение. python3 -m venv name_env
 
@@ -65,7 +65,11 @@ insider
 
     Cбросили работу uwsgi.
 
-    Запустили обычный сервер. python manage.py runserver 0.0.0.0:8000
+    Запустили обычный сервер. python manage.py runserver 0.0.0.0:8080
+
+    Сайт должен быть доступен по ip адресу + порт 8080
+
+    В настройках 
 
 Создание бд postgres через консоль на ubuntu.
 
