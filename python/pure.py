@@ -50,3 +50,24 @@ Cookies.
 
 	К файлу HttpOnly-куки нельзя обращаться с помощью API на стороне клиента, таких как JavaScript. Это ограничение устраняет угрозу кражи куки с помощью кросс-сайтового скриптинга (XSS). Тем не менее, куки остается уязвимым для кросс-сайтовой трассировки (XST) и кросс-сайтовых поддельных запросов (XSRF).
 
+Сессии.
+
+	В официальной документации написано, что лучше использовать wsgi. В этом инструменте есть встроенные механизмы для работы с сессиями.
+
+Чистые запросы.
+
+	Для работы с postgresql используется пакет Psycopg. (pip install psycopg2)
+
+	Взаимодействие происходит по следующей схеме: соединение -> курсор -> запрос -> коммит/откат -> закрытие курсора и соединениям
+
+	conn = psycopg2.connect(dbname='pure', user='postgres', password='asdf')
+	cursor = conn.cursor()
+
+	cursor.execute("SELECT name FROM users")
+	row = cursor.fetchone()
+
+	cursor.execute("SELECT name FROM users")
+	conn.commit()
+	
+	cursor.close()
+	conn.close()
