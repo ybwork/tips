@@ -21,3 +21,5 @@
 - python manage.py migrate name_app zero (откат миграций)
 
 - python manage.py migrate name_app zero (показать миграций)
+
+- pip freeze > requirements.txt
