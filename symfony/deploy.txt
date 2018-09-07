@@ -1,0 +1,1 @@
+https://stackoverflow.com/questions/49664091/symfony-4-apache-2-4-mod-rewrite-not-working

@@ -1,0 +1,11 @@
+http POST http://127.0.0.1:8000/rest-auth/registration/ username=new4 password1=asdfasdf44 password2=asdfasdf44 email=new4@gmail.com
+
+http POST http://127.0.0.1:8000/rest-auth/login/ username=new5 password=asdfasdf55 email=new5@gmail.com
+
+http POST http://127.0.0.1:8000/rest-auth/logout/
+
+http POST http://127.0.0.1:8000/rest-auth/password/reset/ email=new5@gmail.com
+
+http POST http://127.0.0.1:8000/rest-auth/password/reset/confirm/ uid=MTY token=4ze-ac347241f89824e85a39 new_password1=zxcvzxcv55 new_password2=zxcvzxcv55
+
+http POST http://127.0.0.1:8000/companies/ "Authorization: Token 9609e656ed43a3ef3c58efb1073028b5cf37fabd"
