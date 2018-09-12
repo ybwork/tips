@@ -22,7 +22,6 @@
 
 - python manage.py migrate name_app zero (показать миграций)
 
-
 Django rest framework.
     
     - virtualenv nameenv
@@ -39,6 +38,4 @@ Django rest framework.
 
     - pip install django-filter
 
-
-
-    
+- pip freeze > requirements.txt

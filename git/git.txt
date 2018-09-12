@@ -2,6 +2,8 @@
 
 - git remote -v - показывает все подключённые удалённые репозитории в формате (имя, урл)
 
+- git remote add short_name https://github.com/yetbetter/django-don.git - привязывает ссылку на репозиторий к короткому имени
+
 - git clone https://github.com/yetbetter - взяли данные с репозитория
 
 - git fetch name_repo - забирает, но не сливает и не модифицирует данные

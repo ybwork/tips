@@ -8,4 +8,6 @@ http POST http://127.0.0.1:8000/rest-auth/password/reset/ email=new5@gmail.com
 
 http POST http://127.0.0.1:8000/rest-auth/password/reset/confirm/ uid=MTY token=4ze-ac347241f89824e85a39 new_password1=zxcvzxcv55 new_password2=zxcvzxcv55
 
-http POST http://127.0.0.1:8000/companies/ "Authorization: Token 9609e656ed43a3ef3c58efb1073028b5cf37fabd"
+http POST http://127.0.0.1:8000/companies/ "Authorization: Token 046219a93deb342ca39b94dce8872a650b902d76"
+
+http POST http://127.0.0.1:8000/companies/ "Authorization: Token 35b52fc2ef9fd0e44689f8d4d515f07d7d004a0a"
