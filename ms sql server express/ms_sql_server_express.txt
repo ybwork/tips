@@ -28,7 +28,7 @@
 
     В диалоговом окне Свойства TCP/IP перейдите на вкладку IP-адреса.
 
-    Введите доступный номер порта (на моём компьютере) в поле TCP-порт раздела IPAll (фиксированного порта). Для того чтобы посмотреть доступные порты вводим в консоль netstat -a.
+    Введите доступный номер порта (на моём компьютере) в поле TCP-порт раздела IPAll (фиксированного порта). Для того чтобы посмотреть доступные порты вводим в консоль netstat -a. По умолчанию для соединения используется порт 1433.
 
     На левой панели щелкните Службы SQL Server.
 
@@ -55,5 +55,21 @@
     В диалоговом окне Соединение с сервером выбираем в поле тип сервера "Ядро СУБД" или Database Engine.
 
     В поле Имя сервера введите tcp:<ip_компьютера>,порт
+
+Установка соединения с SQL Server с помощью PHP.
+
+    If you need to connect to SQL Server from Linux you can use the PDO_DBLIB library:
+
+        $hostname = "80.254.115.133";
+        $port = 1433;
+        $dbname = "default";
+        $username = "new";
+        $pw = "1234asdf@";
+
+        $dbh = new PDO("dblib:host=$hostname:$port;dbname=$dbname", "$username", "$pw");
+
+    On Windows, you should use SqlSrv, an alternative driver for MS SQL is available from Microsoft
+
+
 
     

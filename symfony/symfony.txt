@@ -1,0 +1,68 @@
+composer create-project symfony/skeleton quick_tour
+
+composer require server --dev
+
+php bin/console server:run
+
+composer require annotations
+
+composer require twig
+
+composer require profiler
+
+composer require symfony/orm-pack
+
+composer require symfony/maker-bundle --dev
+
+php bin/console doctrine:database:create
+
+php bin/console make:entity Product
+
+php bin/console make:migration
+
+php bin/console doctrine:migrations:migrate
+
+php bin/console make:entity -> Class name of the entity -> New field
+
+php bin/console make:entity --regenerate
+
+php bin/console make:controller ProductController
+
+composer require symfony/form
+
+composer require symfony/validator
+
+
+----------------------------- Auth --------------------------------
+
+composer require symfony/security-bundle
+
+composer require friendsofsymfony/user-bundle "~2.0"
+
+
+Instructions
+
+This task should be implemented in either PHP, Ruby, Python, or Javascript. 
+
+You can use frameworks, ORMs, template’s engines, but not ready solutions. 
+
+Code should be provided as a public GitHub repo. 
+
+README file with detailed information is required. 
+
+Host the application somewhere and share a working link to it.
+
+Use Bootstrap for styles.
+
+
+Task
+
+1. Application should have form with field where user can put valid url (validation should be done by direct call of the provided url and check HTTP response code).
+
+4. Application should validate if requested short url is not in use yet.
+
+2. Application should generate short url. Example: http://domaincom/cedwdsfl
+
+3. It should be possible to enter desired short url (another field).
+
+5. Application should store original and short url pair in DB. User than can share short url with other users and once they try to access short url they should be redirected to original url.
