@@ -10,17 +10,28 @@
 
 - cd projectname -> python manage.py runserver
 
+
+- python manage.py test polls
+
+- python manage.py createsuperuser
+
 - python manage.py runserver 172.100.2.15:8000
 
 - python manage.py startapp nameapp (создание приложения)
 
-- python manage.py makemigrations nameapp (вы говорите Django, что внесли некоторые изменения в ваши модели)
+- python manage.py makemigrations (вы говорите Django, что внесли некоторые изменения в ваши модели)
 
 - python manage.py migrate (выполняет миграции и автоматически обновляет базу данных)
 
 - python manage.py migrate name_app zero (откат миграций)
 
-- python manage.py migrate name_app zero (показать миграций)
+
+- pip freeze > requirements.txt
+
+- venv\Scripts\activate -> pip install -r requirements.txt
+
+
+
 
 Django rest framework.
     
@@ -38,4 +49,3 @@ Django rest framework.
 
     - pip install django-filter
 
-- pip freeze > requirements.txt

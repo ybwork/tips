@@ -8,6 +8,47 @@ http POST http://127.0.0.1:8000/rest-auth/password/reset/ email=new5@gmail.com
 
 http POST http://127.0.0.1:8000/rest-auth/password/reset/confirm/ uid=MTY token=4ze-ac347241f89824e85a39 new_password1=zxcvzxcv55 new_password2=zxcvzxcv55
 
-http POST http://127.0.0.1:8000/companies/ "Authorization: Token 046219a93deb342ca39b94dce8872a650b902d76"
+Companies +
 
-http POST http://127.0.0.1:8000/companies/ "Authorization: Token 35b52fc2ef9fd0e44689f8d4d515f07d7d004a0a"
+    http GET http://127.0.0.1:8000/companies/ "Authorization: Token 5a7afdec0941ddec9119210347766f889984d10a"
+
+    http POST http://127.0.0.1:8000/companies/ "Authorization: Token 5a7afdec0941ddec9119210347766f889984d10a" name=test
+
+    http PUT http://127.0.0.1:8000/companies/4/ "Authorization: Token 5a7afdec0941ddec9119210347766f889984d10a" name=updated
+
+    http DELETE http://127.0.0.1:8000/companies/4/ "Authorization: Token 5a7afdec0941ddec9119210347766f889984d10a"
+
+Buldings
+
+    http GET http://127.0.0.1:8000/company/17/buildings/ "Authorization: Token 5a7afdec0941ddec9119210347766f889984d10a"
+
+    http GET http://127.0.0.1:8000/buildings/1/ "Authorization: Token 5a7afdec0941ddec9119210347766f889984d10a" company_id=1
+
+    http POST http://127.0.0.1:8000/buildings/ "Authorization: Token 5a7afdec0941ddec9119210347766f889984d10a" name=test region=test district=test city=test country=test coordinates=test currency=test video=test company_id=1
+
+    http PUT http://127.0.0.1:8000/buildings/17/ "Authorization: Token 5a7afdec0941ddec9119210347766f889984d10a" name=updated region=updated district=updated city=updated country=updated coordinates=updated currency=updated video=updated
+
+    http DELETE http://127.0.0.1:8000/buildings/17/ "Authorization: Token 5a7afdec0941ddec9119210347766f889984d10a"
+
+Permissions
+
+    permissions.py
+
+        class IsOwner(permissions.BasePermission):
+            def has_permission(self, request, view):
+                return True
+
+            def has_object_permission(self, request, view, obj):
+                return request.user.id == obj.user_id
+
+    view.py
+
+        class CompanyViewSet(viewsets.ModelViewSet):
+            ...
+
+            permission_classes = [IsOwner]
+
+            def get_object(self):
+                obj = get_object_or_404(self.get_queryset(), pk=self.kwargs['pk'])
+                self.check_object_permissions(self.request, obj)
+                return obj

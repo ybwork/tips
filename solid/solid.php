@@ -2,6 +2,7 @@
 
 /*
 	Принципы:
+
 		- Принцип единственной ответственности (Single responsibility)
 
 		- Принцип открытости/закрытости (Open-closed)
@@ -74,12 +75,12 @@ class HttpRequester
 
 	private function makeAjaxCall(string $url): Promise
 	{
-		// request and return promise
+		return 'makeAjaxCall';
 	}
 
 	private function makeHttpCall(string $url): Promise
 	{
-		// request and return promise
+		return 'makeHttpCall';
 	}
 }
 
@@ -95,7 +96,7 @@ class AjaxAdapter implements Adapter
 {
 	public function request(string $url)
 	{
-		// request and return promise
+		return 'request';
 	}
 }
 
@@ -103,7 +104,7 @@ class NodeAdapter implements Adapter
 {
 	public function request(string $url)
 	{
-		// request and return promise
+		return 'request';
 	}
 }
 
@@ -136,66 +137,57 @@ class Boiler
 {
    function setDesirableTemperature($temp) 
    {
-
+        return 'setDesirableTemperature';
    }
    
    function getDesirableTemperature() 
    {
-
+        return 'getDesirableTemperature'
    }
-
-   function initializeDevice() { /*use API BrandC*/ }
-   function getWaterTemperature() { /*use API BrandC*/ }
-   function heatWater() { /*empty*/ }
-}
-
-class BrandABoiler extends Boiler 
-{
-   function initializeDevice() { /*use API BrandC*/ }
-   function getWaterTemperature() { /*use API BrandC*/ }
-   function heatWater() { /*empty*/ }
-}
-
-class BrandBBoiler extends Boiler 
-{
-   function initializeDevice() { /*use API BrandC*/ }
-   function getWaterTemperature() { /*use API BrandC*/ }
-   function heatWater() { /*empty*/ }
 }
 
 class BrandCBoiler extends Boiler 
 {
 	// переопределение методов главного класса (ошибка)
-   function setDesirableTemperature($temp) {
-
+   function setDesirableTemperature($temp) 
+   {
+        return 'setDesirableTemperature';
    }
 
    // переопределение методов главного класса (ошибка)
-   function getDesirableTemperature() {
-		
+   function getDesirableTemperature() 
+   {
+        return 'getDesirableTemperature'
    }
-
-   function initializeDevice() { /*use API BrandC*/ }
-   function getWaterTemperature() { /*use API BrandC*/ }
-   function heatWater() { /*empty*/ }
 }
+
 /*
-	А должно быть так:
+    Данный класс, как и предыдущие используют функционал базового класса или максимум может дополнять его
+
+	Правильно:
 */
-// Данный класс, как и предыдущие используют функционал базового класса или максимум может дополнять его
 class BrandCBoiler extends Boiler 
 {
-   function initializeDevice() { /*use API BrandC*/ }
-   function getWaterTemperature() { /*use API BrandC*/ }
-   function heatWater() { /*empty*/ }
+   function initializeDevice() 
+   {
+        return 'initializeDevice';
+   }
+
+   function getWaterTemperature() 
+   {
+        return 'getWaterTemperature';
+   }
+
+   function heatWater() 
+   {
+        return 'heatWater';
+   }
 }
 
 /*
 	Принцип разделения интерфейса (Interface segregation)
 
 	Принцип разделения интерфейсов говорит о том, что слишком «толстые» интерфейсы необходимо разделять на более маленькие и специфические, чтобы клиенты маленьких интерфейсов знали только о методах, которые необходимы им в работе. В итоге, при изменении метода интерфейса не должны меняться клиенты, которые этот метод не используют.
-
-	Моими словами у каждого класса должен быть свой интерфейс
 */
 interface User
 {
@@ -234,7 +226,7 @@ class MySQLUserModel implements IUserModel
 {
 	public function create()
 	{
-		// logic for user create
+		return 'create';
 	}
 }
 
@@ -242,7 +234,7 @@ class ApiUserModel implements IUserModel
 {
 	public function create()
 	{
-		// logic for user create
+		return 'create';
 	}
 }
 
