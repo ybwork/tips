@@ -31,8 +31,6 @@
 - venv\Scripts\activate -> pip install -r requirements.txt
 
 
-
-
 Django rest framework.
     
     - virtualenv nameenv
@@ -48,4 +46,3 @@ Django rest framework.
     - pip install markdown
 
     - pip install django-filter
-
