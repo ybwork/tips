@@ -10,9 +10,20 @@
 
 class NewsMapper
 {
-    public function save(News $news) { ... }
-    public function getById($id) { ... }
-    public function findLatestNews() { ... }
+    public function save(News $news) 
+    {
+
+    }
+
+    public function getById($id) 
+    {
+
+    }
+
+    public function findLatestNews() 
+    {
+
+    }
 }
 
 /*
