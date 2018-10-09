@@ -1,6 +1,6 @@
-http POST http://127.0.0.1:8000/rest-auth/registration/ username=new4 password1=asdfasdf44 password2=asdfasdf44 email=new4@gmail.com
+http POST http://127.0.0.1:8000/rest-auth/registration/ username=user1 password1=asdfasdf11 password2=asdfasdf11 email=user1@gmail.com
 
-http POST http://127.0.0.1:8000/rest-auth/login/ username=new5 password=asdfasdf55 email=new5@gmail.com
+http POST http://127.0.0.1:8000/rest-auth/login/ username=user1 password=asdfasdf11 email=user1@gmail.com
 
 http POST http://127.0.0.1:8000/rest-auth/logout/
 
@@ -8,15 +8,27 @@ http POST http://127.0.0.1:8000/rest-auth/password/reset/ email=new5@gmail.com
 
 http POST http://127.0.0.1:8000/rest-auth/password/reset/confirm/ uid=MTY token=4ze-ac347241f89824e85a39 new_password1=zxcvzxcv55 new_password2=zxcvzxcv55
 
+Houses +
+
+    http GET http://127.0.0.1:8000/houses/ "Authorization: Token 51bc26e38c2e67d4dd8e76742883bce6b6dfffdb"
+
+    http GET http://127.0.0.1:8000/houses/1/ "Authorization: Token 51bc26e38c2e67d4dd8e76742883bce6b6dfffdb"
+
+    http POST http://127.0.0.1:8000/houses/ "Authorization: Token 51bc26e38c2e67d4dd8e76742883bce6b6dfffdb" name=test country=russia city=taganrog
+
+    http PUT http://127.0.0.1:8000/houses/1/ "Authorization: Token 51bc26e38c2e67d4dd8e76742883bce6b6dfffdb" name=updated country=russia city=taganrog
+
+    http DELETE http://127.0.0.1:8000/houses/1/ "Authorization: Token 51bc26e38c2e67d4dd8e76742883bce6b6dfffdb"
+
 Companies +
 
-    http GET http://127.0.0.1:8000/companies/ "Authorization: Token 5a7afdec0941ddec9119210347766f889984d10a"
+    http GET http://127.0.0.1:8000/companies/ "Authorization: Token 51bc26e38c2e67d4dd8e76742883bce6b6dfffdb"
 
-    http POST http://127.0.0.1:8000/companies/ "Authorization: Token 5a7afdec0941ddec9119210347766f889984d10a" name=test
+    http POST http://127.0.0.1:8000/companies/ "Authorization: Token 51bc26e38c2e67d4dd8e76742883bce6b6dfffdb" name=test
 
-    http PUT http://127.0.0.1:8000/companies/4/ "Authorization: Token 5a7afdec0941ddec9119210347766f889984d10a" name=updated
+    http PUT http://127.0.0.1:8000/companies/4/ "Authorization: Token 51bc26e38c2e67d4dd8e76742883bce6b6dfffdb" name=updated
 
-    http DELETE http://127.0.0.1:8000/companies/4/ "Authorization: Token 5a7afdec0941ddec9119210347766f889984d10a"
+    http DELETE http://127.0.0.1:8000/companies/4/ "Authorization: Token 51bc26e38c2e67d4dd8e76742883bce6b6dfffdb"
 
 Buldings
 
@@ -29,6 +41,12 @@ Buldings
     http PUT http://127.0.0.1:8000/buildings/17/ "Authorization: Token 5a7afdec0941ddec9119210347766f889984d10a" name=updated region=updated district=updated city=updated country=updated coordinates=updated currency=updated video=updated
 
     http DELETE http://127.0.0.1:8000/buildings/17/ "Authorization: Token 5a7afdec0941ddec9119210347766f889984d10a"
+
+flats
+
+    http POST http://127.0.0.1:8000/flats/ "Authorization: Token 51bc26e38c2e67d4dd8e76742883bce6b6dfffdb" price=60000000 number=2 entrance=1 floor=1 clone_for_flats=3 status=1 type=one house=2
+
+    http GET http://127.0.0.1:8000/houses/2/flats "Authorization: Token 51bc26e38c2e67d4dd8e76742883bce6b6dfffdb"
 
 Permissions
 
