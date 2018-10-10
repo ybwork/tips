@@ -14,6 +14,9 @@ Auth.
 
 Houses.
 
+    b1564b5907d7e30600f4af940d4be3575a928830
+    c17725b2cf55f9f9f4b636003e2fd1809a9a62a9
+
     http POST http://127.0.0.1:8000/houses/ "Authorization: Token 0d586482f0400602ee9b36cc5c11cd9b19843a08" price=tesladom country=russia city=bataysk
 
     http GET http://127.0.0.1:8000/houses/ "Authorization: Token 0d586482f0400602ee9b36cc5c11cd9b19843a08"
@@ -37,27 +40,3 @@ Flats.
     http PUT http://127.0.0.1:8000/flats/1/ "Authorization: Token 0d586482f0400602ee9b36cc5c11cd9b19843a08" price=1000000 number=1 entrance=1 floor=1 status=1 type=one house=1
 
     http DELETE http://127.0.0.1:8000/houses/1/ "Authorization: Token 0d586482f0400602ee9b36cc5c11cd9b19843a08"
-
-
-Permissions
-
-    permissions.py
-
-        class IsOwner(permissions.BasePermission):
-            def has_permission(self, request, view):
-                return True
-
-            def has_object_permission(self, request, view, obj):
-                return request.user.id == obj.user_id
-
-    view.py
-
-        class CompanyViewSet(viewsets.ModelViewSet):
-            ...
-
-            permission_classes = [IsOwner]
-
-            def get_object(self):
-                obj = get_object_or_404(self.get_queryset(), pk=self.kwargs['pk'])
-                self.check_object_permissions(self.request, obj)
-                return obj
