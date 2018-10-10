@@ -1,0 +1,98 @@
+Index -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form id="imageForm">
+        <!--<input id="schema" type="file" name="schema">-->
+        <input id="price" type="file" name="price">
+        <input type="text" name="price">
+        <input type="text" name="number">
+        <input type="text" name="entrance">
+        <input type="text" name="floor">
+        <input type="text" name="status">
+        <input type="text" name="type">
+        <!--<input type="text" name="house">-->
+        <input type="text" name="house_id">
+        <button class="post-image" type="button">add image</button>
+    </form>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</body>
+</html>
+<script>
+    $('.post-image').on('click', function() {
+        var formData = new FormData(document.getElementById('imageForm'))
+
+        <!--var imagefile = document.querySelector('#schema');-->
+        var imagefile = document.querySelector('#price');
+
+        <!--formData.append("schema", imagefile.files[0]);-->
+        formData.append("price", imagefile.files[0]);
+
+        axios.post('http://127.0.0.1:8000/prices/', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': 'Token c17725b2cf55f9f9f4b636003e2fd1809a9a62a9',
+                <!--'Content-Disposition': 'attachment; filename="1.jpg"',-->
+            }
+        })
+
+        <!--axios.put('http://127.0.0.1:8000/flats/4/', formData, {-->
+            <!--headers: {-->
+                <!--'Content-Type': 'multipart/form-data',-->
+                <!--'Authorization': 'Token c17725b2cf55f9f9f4b636003e2fd1809a9a62a9',-->
+            <!--}-->
+        <!--})-->
+    });
+</script>
+
+
+
+<!-- Confirm email -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="/rest-auth/registration/verify-email/" method="post">
+        <input type="hidden" name="key" value="NA:1gA9n7:f4dS7apq6YmPQdHz0-Ajrl4pLPU/">
+        <input type="submit" value="verify-email">
+    </form>
+</body>
+</html>
+
+<!-- Permissions -->
+<!-- 
+
+    permissions.py
+
+        class IsOwner(permissions.BasePermission):
+            def has_permission(self, request, view):
+                return True
+
+            def has_object_permission(self, request, view, obj):
+                return request.user.id == obj.user_id
+
+    view.py
+
+        class CompanyViewSet(viewsets.ModelViewSet):
+            ...
+
+            permission_classes = [IsOwner]
+
+            def get_object(self):
+                obj = get_object_or_404(self.get_queryset(), pk=self.kwargs['pk'])
+                self.check_object_permissions(self.request, obj)
+                return obj
+-->
+
+Добавить в таблицу django_site вместо example.com или 127.0.0.1:8000 адресс сайта, для отправки корректных ссылок при сбросе пароля.

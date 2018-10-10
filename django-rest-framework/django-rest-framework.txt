@@ -17,6 +17,9 @@ Auth.
 
 Houses.
 
+    b1564b5907d7e30600f4af940d4be3575a928830
+    c17725b2cf55f9f9f4b636003e2fd1809a9a62a9
+
     http POST http://127.0.0.1:8000/houses/ "Authorization: Token 0d586482f0400602ee9b36cc5c11cd9b19843a08" price=tesladom country=russia city=bataysk
 
     http GET http://127.0.0.1:8000/houses/ "Authorization: Token 0d586482f0400602ee9b36cc5c11cd9b19843a08"
