@@ -46,3 +46,5 @@ Django rest framework.
     - pip install markdown
 
     - pip install django-filter
+
+    - HTTPie
