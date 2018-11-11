@@ -720,9 +720,9 @@ q[1].authors__count
 
 # Транзакции
 '''
-	Транзакция - это группа последовательных операций с базой данных.
+	Суть транзакции в том, что она объединяет последовательность действий в одну операцию "всё или ничего". Промежуточные состояния внутри последовательности не видны другим транзакциям, и если что-то помешает успешно завершить транзакцию, ни один из результатов этих действий не сохранится в базе данных.
 
-	Она может быть выполнена либо целиком и успешно, соблюдая целостность данных и независимо от параллельно идущих других транзакций, либо не выполнена вообще.
+	Изменения, производимые открытой транзакцией, невидимы для других транзакций, пока она не будет завершена, а затем они становятся видны все сразу.
 
 	По умолчанию Django использует режим автоматической фиксации (autocommit). То есть аждый запрос сразу фиксируется в базе данных.
 
@@ -753,15 +753,11 @@ def viewfunc(request):
         do_more_stuff()
 
 def viewfunc(request):
-    create_parent()
-
     try:
         with transaction.atomic():
             generate_relationships()
     except IntegrityError:
         handle_exception()
-
-    add_children()
 
 
 def do_something():
@@ -781,3 +777,16 @@ with transaction.atomic():
             raise SomeError()
     except SomeError:
         pass
+
+try:
+	vote = Vote.objects.get(voting=voting, person=person)
+
+	if vote.number_of_votes < voting.limit_votes_for_win:
+		with transaction.atomic():
+			vote.number_of_votes = F('number_of_votes') + 1
+			vote.save()
+	else:
+		return JsonResponse({'limit_was_reached': True})
+except Vote.DoesNotExist:
+	vote = Vote(voting=voting, person=person, number_of_votes=1)
+	vote.save()
