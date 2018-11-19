@@ -1,0 +1,48 @@
+Оглавление:
+
+	Ход мыслей
+
+	Группировка
+
+	DISTINCT ON
+
+Ход мыслей
+
+	Понять какие поля нужно выбрать
+
+	Понять из каких таблиц можно получить поля
+
+	Понять какие таблицы есть и какие нужно приклеить
+
+	Добавить условие или группировку или аггрегацию
+
+Группировка
+
+	SELECT
+		price.product_id,
+		MAX(price.date)
+	FROM 
+		public.product_price AS price
+	GROUP BY
+		price.product_id
+
+	GROUP BY - объединяет строки в одну группу при совпадении значений во всех перечисленных столбцах
+
+	Чтобы получать данные в предложении SELECT нужно либо использовать их в предложении GROUP BY либо агрегацию.
+
+DISTINCT ON
+	
+	SELECT DISTINCT ON (product.id) 
+		product.name, 
+		price.price, 
+		price.date 
+	FROM 
+		public.product_product AS product 
+
+		JOIN public.product_price AS price ON price.product_id = product.id 
+
+	ORDER BY 
+		product.id, price.date DESC
+
+
+	

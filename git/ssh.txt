@@ -1,0 +1,33 @@
+Проверка на существование.
+
+	cd ~/.ssh
+
+	ls
+
+	Если есть, то увижу файлы id_dsa и id_dsa.pub
+
+Создание.
+
+	ssh-keygen
+
+Просмотр.
+
+	cat ~/.ssh/id_rsa.pub
+
+Привязка к аккаунту github или любому другому.
+
+	Переходим в Settings -> SSH Keys -> Add SSH key и добавляем ключ
+
+Настройка ssh-agent.
+
+	Переходим в ssh-agent с помощью команды ssh-agent
+
+	Если видим вывод после команды, то всё ок. Если нет, то запускаем ssh-agent в фоне eval "$(ssh-agent -s)"
+
+	Добавляем ключ ssh-add ~/.ssh/id_rsa
+
+Пуш с помощью ssh.
+
+	git remote add ror-events git@github.com:ybwork/ror-events.git
+
+	git push ror-events master

@@ -1,0 +1,196 @@
+Оглавление.
+
+  Установка gem.
+
+  Базовые команды.
+
+  Где правильно делать order_by. (?)
+
+  Чистый проект.
+
+  Роутинг.
+
+  Котроллеры.
+
+  Модели.
+
+  Формы.
+
+  Вывод ошибок валидации.
+
+  Ссылки во view.
+
+  Rubocop.
+
+  Carriview.
+
+  Развётрывание.
+
+  Ошибки.
+
+  Поднятие проекта.
+
+Установка gem.
+
+  gem install suspenders
+
+  gamefile -> gem "suspenders" -> bundle install
+
+Базовые команды.
+  
+  bin/rails server
+
+  bin/rails generate controller Welcome index
+
+  bin/rails routes
+
+  bin/rails generate model Event title:string text:text organizers:references
+
+  rake db:create:all
+
+  rake db:migrate
+
+  bin/rails db:migrate
+
+  bin/rails db:migrate RAILS_ENV=production
+
+  rails g migration AddFileCodeToAttachments - создаёт новую миграцию
+
+Где правильно делать order_by.
+
+Чистый проект.
+  
+  Можно использовать gem suspenders. Перед запуском поменять версию в .ruby-version, Gemfile на нужную версию.
+
+Роутинг.
+
+  Объявляются в config/routes.rb
+
+  get 'admin', action: :index, controller: 'admin', as: 'admin' - одиночный роут
+
+  resources :articles - роут ресурса
+
+  resources :articles do - вложенный ресурсный роут (например один из них articles/comments/new)
+    resources :comments
+  end
+
+  namespace :admin_panel, path: 'admin' do - вложенный ресурсный роут с строго заданным путём
+    resources :events
+  end
+
+Котроллеры.
+
+  Частой практикой является помещать стандартные экшны CRUD в каждом контроллере в следующем порядке: index, show, new, edit, create, update и destroy.
+
+  Отметьте, что в экшене create мы использовали render вместо redirect_to, когда save возвращает false. Метод render использован, чтобы объект @article был передан назад в шаблон new, когда он будет отрендерен. Этот рендеринг выполняется в рамках того же запроса, что и отправка формы, в то время как redirect_to сообщает браузеру выполнить другой запрос. Мы сделали так, потому что в противном случае @article будет nil во вьюхе, и вызов @article.errors.any? вызовет ошибку.
+
+    if @article.save
+      redirect_to @article
+    else
+      render 'new'
+    end
+
+Модели.
+
+  belongs_to :organizer - обратная связь один ко многим
+
+  has_many :event - связь один ко многим
+
+  validates_associated :organizer - валидация по связанному полю
+
+  validates :name, presence: true, length: {maximum: 30} - обычная валидация
+
+Rubocop.
+
+  rubocop
+
+  rubocop --fix
+
+  rubocop -a
+
+  rubocop --auto-correct
+
+Формы.
+
+  <%= form_with scope: :article, url: articles_path, local: true do |form| %>
+  <% end %>
+
+  <%= form_for [:admin_panel, @event], local: true, multipart: true do |form| %>
+    <%= form.label :organizer %>
+    <%= select_tag(:organizer_id, options_for_select(Organizer.all.collect.each {|org| [org.name, org.id]})) %>
+  <% end %>
+
+  Есть партиал формы. Нужны когда используем одну и ту же форму в нескольких местах. Название начинается со знака подчеркивания _form.html.erb. В шаблоне такие формы подключаются через <%= render 'form' %>
+
+Вывод ошибок валидации.
+
+  <% if @subscription.errors.any? %>
+    <h5>Validation errors:</h5>
+    <ul>
+      <% @subscription.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+Ссылки во view.
+
+  <%= link_to 'Events', events_path %>
+
+  <%= link_to 'More...', event_path(event) %>
+
+  <%= link_to 'Delete comment', [comment.article, comment] %>
+
+Rubocop.
+
+  Для валидации кода на стандарт.
+  
+Carrierwave.
+
+  Для работы с картинками.
+
+Развёртывание.
+
+  rvm use 2.5.3 (вводим сюда нужную версию ruby)
+
+  bundle install
+
+  Если появляетс ошибка Please run yarn install to update, то переходим в config/environments/development.rb и изменяем св-во check_yarn_integrity на false
+
+Ошибки.
+
+  `initialize': Address already in use - bind(2) for "127.0.0.1" port 3000
+
+      lsof -wni tcp:3000
+
+      kill -9 3366 (3366 это значение, которое нужно посмотреть в выводе предыдущей команды в колонке PID)
+
+
+Поднятие проекта.
+
+	git clone git@git.elonsoft.ru:ctw/ctw.git map.ncpti.ru`
+
+	git checkout develop
+
+	bundle install
+
+	yarn install
+
+	./bin/webpack-dev-server
+
+	rake db:create:all
+
+	rake db:migrate
+
+	Если "PG::InsufficientPrivilege: ERROR:  permission denied to create extension "pg_trgm" HINT:  Must be superuser to create this extension.", то:
+
+  		postgres=# ALTER ROLE user CREATEROLE SUPERUSER;
+
+  	Установка yarn - sudo npm install yarn -g
+
+  
+
+
+
+
+
