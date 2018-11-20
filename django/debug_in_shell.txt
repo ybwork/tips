@@ -11,4 +11,3 @@ Work.
 	Product.objects.count()
 
 	connection.queries - show query to db
- 
