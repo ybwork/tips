@@ -1,0 +1,5 @@
+Установка и запуск.
+
+	bin/rubymine.sh - файл для открытия
+
+	tools -> create desktop entry - для создания иконки в ubuntu

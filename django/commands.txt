@@ -1,50 +1,55 @@
-- virtualenv nameenv
+Django
+	virtualenv nameenv (лучше использовать virtualenv wrapper и хранить виртуальные окружения отдельно от проекта, потому что не нужно ставить их под gitignore)
 
-- folder_with_project\Scripts\activate
+	folder_with_project\Scripts\activate
 
-- pip install django
+	pip install django
 
-- django-admin startproject projectname
+	pip install psycopg2
 
-- pip install psycopg2 (для работы postgresql в django)
+	django-admin startproject projectname
 
-- cd projectname -> python manage.py runserver
+	cd project_name
+
+		./manage.py runserver
+
+		./manage.py runserver 172.100.2.15:8000
+
+		./manage.py runserver 0.0.0.0:8000
+
+		./manage.py startapp nameapp
+
+		./manage.py makemigrations
+
+		./manage.py migrate
+
+		./manage.py migrate name_app zero
+
+		./manage.py createsuperuser
+
+		./manage.py test polls
+
+		Лучше запускать через ./, потому что не получиться конфликта с уже возможно запущенными файлами с этим же именем, так как поиск идёт только внутри текущего каталога, а не везде.
+
+pip freeze > requirements.txt
+
+venv\Scripts\activate -> pip install -r requirements.txt
 
 
-- python manage.py test polls
-
-- python manage.py createsuperuser
-
-- python manage.py runserver 172.100.2.15:8000
-
-- python manage.py startapp nameapp (создание приложения)
-
-- python manage.py makemigrations (вы говорите Django, что внесли некоторые изменения в ваши модели)
-
-- python manage.py migrate (выполняет миграции и автоматически обновляет базу данных)
-
-- python manage.py migrate name_app zero (откат миграций)
-
-
-- pip freeze > requirements.txt
-
-- venv\Scripts\activate -> pip install -r requirements.txt
-
-
-Django rest framework.
+Django REST
     
-    - virtualenv nameenv
+	virtualenv nameenv
 
-    - folder_with_project\Scripts\activate
+	folder_with_project\Scripts\activate
 
-    - pip install django
+	pip install django
 
-    - django-admin startproject projectname
+	django-admin startproject projectname
 
-    - pip install djangorestframework
+	pip install djangorestframework
 
-    - pip install markdown
+	pip install markdown
 
-    - pip install django-filter
+	pip install django-filter
 
-    - HTTPie
+	HTTPie

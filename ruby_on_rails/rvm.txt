@@ -1,0 +1,21 @@
+Команды.
+
+	rvm list known - all
+
+	rvm install 2.5.3
+
+	rvm list - all installed
+
+	rvm use ruby-2.5.3 (глобально)
+
+Если linux и не работает команды выше.
+
+	Open console
+
+	Select Edit -> Profile Preferences
+
+	Select tab: Title and Command
+
+	Check box 'Run command as a login shell'
+	
+	Restart terminal
